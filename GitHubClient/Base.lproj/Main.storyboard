@@ -50,7 +50,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Log in" id="Q8r-Xu-nDi"/>
+                    <navigationItem key="navigationItem" title="Log in" id="Q8r-Xu-nDi">
+                        <barButtonItem key="rightBarButtonItem" title="Saved" id="ccT-pb-y8l">
+                            <connections>
+                                <segue destination="qNH-hZ-mi0" kind="push" id="MjB-DA-VKS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="passwordTextField" destination="R9a-MY-rs7" id="aE4-Mc-SGm"/>
                         <outlet property="scrollView" destination="Av3-mx-tc3" id="5QI-d6-9dv"/>
@@ -110,6 +116,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9m-Wj-2yB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1622" y="68"/>
+        </scene>
+        <!--Offline Browser Controller - Saved repositories-->
+        <scene sceneID="rIa-JS-lnF">
+            <objects>
+                <tableViewController id="qNH-hZ-mi0" customClass="GCOfflineBrowserController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TNr-dh-bBi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedRepoCell" id="8VI-z1-fDG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8VI-z1-fDG" id="DbF-xT-SlM">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qNH-hZ-mi0" id="nye-NV-QdW"/>
+                            <outlet property="delegate" destination="qNH-hZ-mi0" id="9cM-dA-giV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Saved repositories" id="BQA-dV-cPN"/>
+                    <connections>
+                        <segue destination="DYf-A6-57k" kind="push" identifier="displayOfflineFileSegue" id="83I-ZI-Ces"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCL-zn-mnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="736"/>
         </scene>
         <!--Folder View Controller-->
         <scene sceneID="WCH-Ah-Cyj">
@@ -223,4 +261,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="83I-ZI-Ces"/>
+    </inferredMetricsTieBreakers>
 </document>

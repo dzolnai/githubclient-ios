@@ -11,6 +11,8 @@
 #import "GCAppDelegate.h"
 #import "GCRepositoryViewController.h"
 #import "GCRepository.h"
+#import "GCOfflineBrowserController.h"
+#import "MBProgressHUD.h"
 
 @interface GCViewController()  <UITextFieldDelegate> {
     NSMutableArray * _repositories;
@@ -59,15 +61,27 @@
 }
 - (IBAction)loginButtonTouchUpInside:(id)sender {
     
+    [self dismissKeyboard];
+    
     NSString * userName = self.usernameTextField.text;
     NSString * password = self.passwordTextField.text;
+    
+    MBProgressHUD* hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+    
+    // Set indeterminate mode
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Logging in...";
+    [hud show:YES];
     
     GCAppDelegate *appDelegate = (GCAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.networkingManager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
     [appDelegate.networkingManager.requestSerializer setAuthorizationHeaderFieldWithUsername: userName password: password];
     [appDelegate.networkingManager GET:@"https://api.github.com/user/repos" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [hud hide:YES];
         [self pushRepositoryControllerWithRepos: responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [hud hide:YES];
         self.passwordTextField.layer.borderColor = [[UIColor redColor] CGColor];
         self.passwordTextField.layer.borderWidth = 2.0;
     }];
@@ -97,6 +111,10 @@
     if ([[segue identifier] isEqualToString:@"browseRepositoriesSegue"]){
         GCRepositoryViewController *repoController = [segue destinationViewController];
         repoController.repositories = _repositories;
+    }
+    if ([[segue identifier] isEqualToString:@"browseSavedRepositoriesSegue"]){
+        //GCOfflineBrowserController *repoController = [segue destinationViewController];
+        // Don't do anything here
     }
 }
 

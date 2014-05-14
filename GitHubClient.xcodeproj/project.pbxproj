@@ -24,6 +24,11 @@
 		894C8C1819126DBF005946EA /* GitHubClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C8C1719126DBF005946EA /* GitHubClientTests.m */; };
 		894C8C23191289AA005946EA /* GCRepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C8C22191289AA005946EA /* GCRepositoryViewController.m */; };
 		894C8C2619128D41005946EA /* GCRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C8C2519128D41005946EA /* GCRepository.m */; };
+		8991C5221922A64E00D117E2 /* GCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8991C5211922A64E00D117E2 /* GCUtils.m */; };
+		8991C5251922B0F000D117E2 /* GCDownloadedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8991C5241922B0F000D117E2 /* GCDownloadedFile.m */; };
+		899235A919235454004155AE /* GCDownloadPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 899235A819235454004155AE /* GCDownloadPath.m */; };
+		899235AC192355DC004155AE /* GCRepositoryDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 899235AB192355DC004155AE /* GCRepositoryDatabase.m */; };
+		899235AF1923645B004155AE /* GCOfflineBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899235AE1923645B004155AE /* GCOfflineBrowserController.m */; };
 		89DC21E2191FFF550095178A /* GCFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DC21E1191FFF550095178A /* GCFile.m */; };
 		89DC21E519200C8D0095178A /* GCFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DC21E419200C8D0095178A /* GCFileViewController.m */; };
 		89DC26A0191E7B1A00D515F0 /* GCFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DC269F191E7B1A00D515F0 /* GCFolderViewController.m */; };
@@ -65,6 +70,16 @@
 		894C8C22191289AA005946EA /* GCRepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRepositoryViewController.m; sourceTree = "<group>"; };
 		894C8C2419128D41005946EA /* GCRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRepository.h; sourceTree = "<group>"; };
 		894C8C2519128D41005946EA /* GCRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRepository.m; sourceTree = "<group>"; };
+		8991C5201922A64E00D117E2 /* GCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUtils.h; sourceTree = "<group>"; };
+		8991C5211922A64E00D117E2 /* GCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUtils.m; sourceTree = "<group>"; };
+		8991C5231922B0F000D117E2 /* GCDownloadedFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDownloadedFile.h; sourceTree = "<group>"; };
+		8991C5241922B0F000D117E2 /* GCDownloadedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDownloadedFile.m; sourceTree = "<group>"; };
+		899235A719235454004155AE /* GCDownloadPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDownloadPath.h; sourceTree = "<group>"; };
+		899235A819235454004155AE /* GCDownloadPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDownloadPath.m; sourceTree = "<group>"; };
+		899235AA192355DC004155AE /* GCRepositoryDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRepositoryDatabase.h; sourceTree = "<group>"; };
+		899235AB192355DC004155AE /* GCRepositoryDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRepositoryDatabase.m; sourceTree = "<group>"; };
+		899235AD1923645B004155AE /* GCOfflineBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOfflineBrowserController.h; sourceTree = "<group>"; };
+		899235AE1923645B004155AE /* GCOfflineBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOfflineBrowserController.m; sourceTree = "<group>"; };
 		89DC21E0191FFF550095178A /* GCFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCFile.h; sourceTree = "<group>"; };
 		89DC21E1191FFF550095178A /* GCFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFile.m; sourceTree = "<group>"; };
 		89DC21E319200C8D0095178A /* GCFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCFileViewController.h; sourceTree = "<group>"; };
@@ -147,6 +162,10 @@
 				89DC269F191E7B1A00D515F0 /* GCFolderViewController.m */,
 				89DC21E319200C8D0095178A /* GCFileViewController.h */,
 				89DC21E419200C8D0095178A /* GCFileViewController.m */,
+				8991C5201922A64E00D117E2 /* GCUtils.h */,
+				8991C5211922A64E00D117E2 /* GCUtils.m */,
+				899235AD1923645B004155AE /* GCOfflineBrowserController.h */,
+				899235AE1923645B004155AE /* GCOfflineBrowserController.m */,
 			);
 			path = GitHubClient;
 			sourceTree = "<group>";
@@ -187,6 +206,12 @@
 				894C8C2519128D41005946EA /* GCRepository.m */,
 				89DC21E0191FFF550095178A /* GCFile.h */,
 				89DC21E1191FFF550095178A /* GCFile.m */,
+				8991C5231922B0F000D117E2 /* GCDownloadedFile.h */,
+				8991C5241922B0F000D117E2 /* GCDownloadedFile.m */,
+				899235A719235454004155AE /* GCDownloadPath.h */,
+				899235A819235454004155AE /* GCDownloadPath.m */,
+				899235AA192355DC004155AE /* GCRepositoryDatabase.h */,
+				899235AB192355DC004155AE /* GCRepositoryDatabase.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -325,12 +350,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				894C8C23191289AA005946EA /* GCRepositoryViewController.m in Sources */,
+				899235A919235454004155AE /* GCDownloadPath.m in Sources */,
 				894C8BFD19126DBF005946EA /* GCAppDelegate.m in Sources */,
 				89DC21E519200C8D0095178A /* GCFileViewController.m in Sources */,
 				89DC26A0191E7B1A00D515F0 /* GCFolderViewController.m in Sources */,
 				894C8C2619128D41005946EA /* GCRepository.m in Sources */,
 				894C8C0319126DBF005946EA /* GCViewController.m in Sources */,
+				899235AF1923645B004155AE /* GCOfflineBrowserController.m in Sources */,
+				8991C5221922A64E00D117E2 /* GCUtils.m in Sources */,
+				899235AC192355DC004155AE /* GCRepositoryDatabase.m in Sources */,
 				89DC21E2191FFF550095178A /* GCFile.m in Sources */,
+				8991C5251922B0F000D117E2 /* GCDownloadedFile.m in Sources */,
 				894C8BF919126DBF005946EA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 #import "GCAppDelegate.h"
 #import "GCFile.h"
 #import "GCFileViewController.h"
+#import "GCUtils.h"
 
 @interface GCFolderViewController () {
     
@@ -159,6 +160,7 @@
 }
 
 - (void) parseFile: (id) json {
+    
     // Use this for logging the output of the call
     // NSLog(@"JSON: %@", json);
     
@@ -166,20 +168,33 @@
     
     NSString * content = [jsonDict objectForKey:@"content"];
     NSString * encoding = [jsonDict objectForKey:@"encoding"];
+    _fileName = [jsonDict objectForKey:@"name"];
     
+    // remove the newline characters
     content = [[content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@""];
+    BOOL isImage = [GCUtils isFileAnImage: _fileName];
     
     if([encoding isEqualToString:@"base64"]){
-        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:content options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSISOLatin2StringEncoding];
-        if (decodedString){
-            _fileContents = decodedString;
-            _fileName = [jsonDict objectForKey:@"name"];
-            [self performSegueWithIdentifier:@"displayFileSegue" sender:self];
+        if (!isImage){
+            NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:content options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSISOLatin2StringEncoding];
+            if (decodedString){
+                _fileContents = decodedString;
+
+            }
+        } else {
+            _fileContents = content;
         }
+        [self performSegueWithIdentifier:@"displayFileSegue" sender:self];
+    } else {
+        // currently we only support base64 (don't know if anything else exists)
+        // displaying an alertview to inform the user that this is unsupported
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Unknown encoding type" message:@"Sorry, this type of object is unsupported" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
-    // TODO display alert
 }
+
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"displayFileSegue"]){

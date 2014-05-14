@@ -9,8 +9,12 @@
 #import "GCRepositoryViewController.h"
 #import "GCRepository.h"
 #import "GCFolderViewController.h"
+#import "GCUtils.h"
+#import "MBProgressHUD.h"
 
-@interface GCRepositoryViewController ()
+@interface GCRepositoryViewController () {
+    int _lastClickedIndex;
+}
 
 @end
 
@@ -20,7 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        _lastClickedIndex = -1;
     }
     return self;
 }
@@ -28,12 +32,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath){
+            _lastClickedIndex = indexPath.row;
+            GCRepository * selectedRepo = (GCRepository*) [self.repositories objectAtIndex: indexPath.row];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Download repository"
+                                                                 message: [NSString stringWithFormat:@"Do you want to save this repository for offline use: %@?", selectedRepo.name]
+                                                                delegate:self
+                                                                cancelButtonTitle:@"No thanks"
+                                                                otherButtonTitles:@"Yes", nil];
+            [alertView show];
+        }
+    }
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	// tapped yes
+	if (buttonIndex != [alertView cancelButtonIndex])
+	{
+        MBProgressHUD* HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        // Set indeterminate mode
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        
+        HUD.labelText = @"Downloading";
+        
+        [HUD show:YES];
+        
+        GCRepository * repo = (GCRepository*) [self.repositories objectAtIndex:_lastClickedIndex];
+        [GCUtils downloadFilesRecursivelyFrom:[repo.url stringByAppendingString: @"/contents/"] withName:repo.name isRepoRoot: YES whenFinished: ^{
+            [HUD hide:YES];
+        }];
+		
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +110,11 @@
     }
     cell.detailTextLabel.text = ((GCRepository *)[self.repositories objectAtIndex:indexPath.item]).owner;
     cell.textLabel.text = ((GCRepository *)[self.repositories objectAtIndex:indexPath.item]).name;
+    cell.imageView.image = [UIImage imageNamed:@"repository"];
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.0; //seconds
+    [cell addGestureRecognizer:lpgr];
     return cell;
 }
 

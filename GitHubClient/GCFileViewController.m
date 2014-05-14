@@ -7,6 +7,7 @@
 //
 
 #import "GCFileViewController.h"
+#import "GCUtils.h"
 
 @interface GCFileViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -32,24 +33,31 @@
     } else {
         self.title = @"File";
     }
-    // convert the spaces to non breaking ones
-    self.content = [self.content stringByReplacingOccurrencesOfString:@" " withString:@"&nbsp;"];
-    // convert the newlines to br tags
-    self.content = [self.content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
-    // change the font with the html
-    self.content = [NSString stringWithFormat:@"<html> \n"
-                    "<head> \n"
-                    "<style type=\"text/css\"> \n"
-                    "body {font-family: \"%@\"; font-size: %@;}\n"
-                    "</style> \n"
-                    "</head> \n"
-                    "<body>%@</body> \n"
-                    "</html>", @"TrebuchetMS", [NSNumber numberWithInt:12], self.content];
-    if (self.content){
+    BOOL isFileAnImage = [GCUtils isFileAnImage:self.fileName];
+    if (isFileAnImage){
+        NSString* extension = [self.fileName pathExtension];
+        self.content = [NSString stringWithFormat:@"<img alt=\"%@\" src=\"data:image/%@;base64,%@\" />", self.fileName, extension, self.content];
         [self.webView loadHTMLString:self.content baseURL:nil];
+    } else {
+        // convert the spaces to non breaking ones
+        self.content = [self.content stringByReplacingOccurrencesOfString:@" " withString:@"&nbsp;"];
+        // convert the newlines to br tags
+        self.content = [self.content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br/>"];
+        // change the font with the html
+        self.content = [NSString stringWithFormat:@"<html> \n"
+                        "<head> \n"
+                        "<style type=\"text/css\"> \n"
+                        "body {font-family: \"%@\"; font-size: %@;}\n"
+                        "</style> \n"
+                        "</head> \n"
+                        "<body>%@</body> \n"
+                        "</html>", @"TrebuchetMS", [NSNumber numberWithInt:12], self.content];
+        if (self.content){
+            [self.webView loadHTMLString:self.content baseURL:nil];
+        }
     }
     
-
+    
     // Do any additional setup after loading the view.
 }
 
@@ -60,14 +68,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		05160C81FC6A49DC99BDBD83 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2DB09FFB23724470903F1543 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		894C8BE919126DBF005946EA /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		894C8BE919126DBF005946EA /* Persistence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Persistence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894C8BEC19126DBF005946EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		894C8BEE19126DBF005946EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		894C8BF019126DBF005946EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -127,7 +127,7 @@
 		894C8BEA19126DBF005946EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				894C8BE919126DBF005946EA /* GitHubClient.app */,
+				894C8BE919126DBF005946EA /* Persistence.app */,
 				894C8C0A19126DBF005946EA /* GitHubClientTests.xctest */,
 			);
 			name = Products;
@@ -235,7 +235,7 @@
 			);
 			name = GitHubClient;
 			productName = GitHubClient;
-			productReference = 894C8BE919126DBF005946EA /* GitHubClient.app */;
+			productReference = 894C8BE919126DBF005946EA /* Persistence.app */;
 			productType = "com.apple.product-type.application";
 		};
 		894C8C0919126DBF005946EA /* GitHubClientTests */ = {
@@ -490,7 +490,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GitHubClient/GitHubClient-Prefix.pch";
 				INFOPLIST_FILE = "GitHubClient/GitHubClient-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Persistence;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -504,7 +504,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GitHubClient/GitHubClient-Prefix.pch";
 				INFOPLIST_FILE = "GitHubClient/GitHubClient-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Persistence;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

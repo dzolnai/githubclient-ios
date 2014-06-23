@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "894C8BE819126DBF005946EA"
-               BuildableName = "GitHubClient.app"
+               BuildableName = "Persistence.app"
                BlueprintName = "GitHubClient"
                ReferencedContainer = "container:GitHubClient.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "894C8BE819126DBF005946EA"
-            BuildableName = "GitHubClient.app"
+            BuildableName = "Persistence.app"
             BlueprintName = "GitHubClient"
             ReferencedContainer = "container:GitHubClient.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "894C8BE819126DBF005946EA"
-            BuildableName = "GitHubClient.app"
+            BuildableName = "Persistence.app"
             BlueprintName = "GitHubClient"
             ReferencedContainer = "container:GitHubClient.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "894C8BE819126DBF005946EA"
-            BuildableName = "GitHubClient.app"
+            BuildableName = "Persistence.app"
             BlueprintName = "GitHubClient"
             ReferencedContainer = "container:GitHubClient.xcodeproj">
          </BuildableReference>
